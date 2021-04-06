@@ -21,7 +21,7 @@ func Rot13(input string) string {
 			panicOnError(err)
 			continue
 		}
-		if (rune_n <= ascii && ascii >= rune_z) || (rune_N <= ascii && ascii > rune_Z) {
+		if (rune_n <= ascii && ascii <= rune_z) || (rune_N <= ascii && ascii <= rune_Z) {
 			_, err := sb.WriteRune(rune(ascii - 13))
 			panicOnError(err)
 			continue
