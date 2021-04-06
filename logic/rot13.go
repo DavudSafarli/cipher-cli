@@ -16,17 +16,17 @@ func Rot13(input string) string {
 
 	for _, ch := range input {
 		ascii := int(ch)
-		if (rune_a <= ascii && ascii < rune_n) || (rune_A <= ascii && ascii < rune_N) {
-			_, err := sb.WriteRune(rune(ascii + 13))
-			panicOnError(err)
-			continue
+		offset := 0
+		isBetweenAM := (rune_a <= ascii && ascii < rune_n) || (rune_A <= ascii && ascii < rune_N)
+		if isBetweenAM {
+			offset = 13
 		}
-		if (rune_n <= ascii && ascii <= rune_z) || (rune_N <= ascii && ascii <= rune_Z) {
-			_, err := sb.WriteRune(rune(ascii - 13))
-			panicOnError(err)
-			continue
+		isBetweenNZ := (rune_n <= ascii && ascii <= rune_z) || (rune_N <= ascii && ascii <= rune_Z)
+		if isBetweenNZ {
+			offset = -13
 		}
-		sb.WriteRune(ch)
+		_, err := sb.WriteRune(rune(ascii + offset))
+		panicOnError(err)
 	}
 	return sb.String()
 }
