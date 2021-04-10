@@ -2,17 +2,14 @@ package main
 
 import (
 	"github.com/DavudSafarli/encrypt/logic"
+	"github.com/DavudSafarli/encrypt/printer"
 )
 
-type Printer interface {
-	Print(output string)
-}
-
 type App struct {
-	printer Printer
+	printer printer.Printer
 }
 
-func NewApp(printer Printer) App {
+func NewApp(printer printer.Printer) App {
 	return App{
 		printer: printer,
 	}
