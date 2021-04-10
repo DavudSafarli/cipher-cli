@@ -10,8 +10,12 @@ type test struct {
 
 func TestRot13(t *testing.T) {
 	tests := []test{
-		{name: "Test with ascii charset only", input: "qwertyuiopasdfghjklzxcvbnm", expected: "djreglhvbcnfqstuwxymkpioaz"},
-		{name: "Test with non-ascii charset", input: "əüöğ汉字仮名!;%:?*()_'ş", expected: "əüöğ汉字仮名!;%:?*()_'ş"},
+		{name: "Transforms ascii charset", input: "qwertyuiopasdfghjklzxcvbnm", expected: "djreglhvbcnfqstuwxymkpioaz"},
+		{name: "Transforms Uppercase letters", input: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", expected: "NOPQRSTUVWXYZABCDEFGHIJKLM"},
+		{name: "Transforms Lowercase letters", input: "abcdefghijklmnopqrstuvwxyz", expected: "nopqrstuvwxyzabcdefghijklm"},
+		{name: "Doesn't change non-ascii charset and symbols", input: "əüöğ汉字仮名!;%:?*()_'ş@#[]", expected: "əüöğ汉字仮名!;%:?*()_'ş@#[]"},
+		{name: "Doesn't transform numbers", input: "1234567890", expected: "1234567890"},
+		{name: "Doesn't transform emojis", input: "✅🚫🙋", expected: "✅🚫🙋"},
 	}
 
 	for _, test := range tests {
